@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Main hull -->
+    <path d="M4 36C4 37.1046 4.89543 38 6 38H42C43.1046 38 44 37.1046 44 36V34H4V36Z" fill="#FF5722"/>
+    
+    <!-- Lower deck -->
+    <path d="M44 34H4L2 28H46L44 34Z" fill="#F44336"/>
+    
+    <!-- Middle deck -->
+    <path d="M46 28H2L1 22H47L46 28Z" fill="#FF5722"/>
+    
+    <!-- Upper deck -->
+    <path d="M47 22H1L0 16H48L47 22Z" fill="#F44336"/>
+    
+    <!-- Bridge -->
+    <path d="M24 16L18 22H30L24 16Z" fill="#FF5722"/>
+    
+    <!-- Windows - Lower deck -->
+    <circle cx="12" cy="31" r="1" fill="#FFFFFF"/>
+    <circle cx="18" cy="31" r="1" fill="#FFFFFF"/>
+    <circle cx="24" cy="31" r="1" fill="#FFFFFF"/>
+    <circle cx="30" cy="31" r="1" fill="#FFFFFF"/>
+    <circle cx="36" cy="31" r="1" fill="#FFFFFF"/>
+    
+    <!-- Windows - Middle deck -->
+    <circle cx="12" cy="25" r="1" fill="#FFFFFF"/>
+    <circle cx="18" cy="25" r="1" fill="#FFFFFF"/>
+    <circle cx="24" cy="25" r="1" fill="#FFFFFF"/>
+    <circle cx="30" cy="25" r="1" fill="#FFFFFF"/>
+    <circle cx="36" cy="25" r="1" fill="#FFFFFF"/>
+    
+    <!-- Windows - Upper deck -->
+    <circle cx="12" cy="19" r="1" fill="#FFFFFF"/>
+    <circle cx="18" cy="19" r="1" fill="#FFFFFF"/>
+    <circle cx="24" cy="19" r="1" fill="#FFFFFF"/>
+    <circle cx="30" cy="19" r="1" fill="#FFFFFF"/>
+    <circle cx="36" cy="19" r="1" fill="#FFFFFF"/>
+    
+    <!-- Bridge windows -->
+    <circle cx="21" cy="19" r="0.75" fill="#FFFFFF"/>
+    <circle cx="24" cy="19" r="0.75" fill="#FFFFFF"/>
+    <circle cx="27" cy="19" r="0.75" fill="#FFFFFF"/>
+    
+    <!-- Navigation lights -->
+    <circle cx="24" cy="14" r="0.75" fill="#FFEB3B"/>
+    <circle cx="12" cy="16" r="0.75" fill="#FFEB3B"/>
+    <circle cx="36" cy="16" r="0.75" fill="#FFEB3B"/>
+    
+    <!-- Pool deck -->
+    <rect x="16" y="22" width="16" height="2" fill="#4FC3F7"/>
+    
+    <!-- Outline for better visibility -->
+    <path d="M4 36C4 37.1046 4.89543 38 6 38H42C43.1046 38 44 37.1046 44 36V34H4V36Z" stroke="#000000" stroke-width="0.5" fill="none"/>
+    <path d="M44 34H4L2 28H46L44 34Z" stroke="#000000" stroke-width="0.5" fill="none"/>
+    <path d="M46 28H2L1 22H47L46 28Z" stroke="#000000" stroke-width="0.5" fill="none"/>
+    <path d="M47 22H1L0 16H48L47 22Z" stroke="#000000" stroke-width="0.5" fill="none"/>
+    <path d="M24 16L18 22H30L24 16Z" stroke="#000000" stroke-width="0.5" fill="none"/>
+</svg> 

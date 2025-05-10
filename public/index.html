@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ship GPS Tracker</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="config.js"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <div class="header-overlay">
+        <div class="header-content">
+            <h1>Miray Cruises</h1>
+            <h2>M/V Gemini</h2>
+        </div>
+    </div>
+    <div class="ship-info-overlay">
+        <div class="ship-info-content">
+            <div class="status-section">
+                <h3>Current Status</h3>
+                <p id="location-description">Acquiring GPS signal...</p>
+            </div>
+            <div class="weather-info">
+                <h3>Weather Conditions</h3>
+                <div class="weather-details">
+                    <div class="weather-item">
+                        <span id="date-info">--</span>
+                    </div>
+                    <div class="weather-item">
+                        <span id="temperature">--</span>
+                    </div>
+                    <div class="weather-item">
+                        <span id="wind-info">--</span>
+                    </div>
+                </div>
+            </div>
+            <div class="current-location">
+                <h3>Current Location</h3>
+                <div class="location-details">
+                    <div class="location-info">
+                        <span id="current-location">--</span>
+                    </div>
+                </div>
+            </div>
+            <div class="timestamp">
+                <span>Last updated:</span>
+                <span id="update-time">--</span>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html> 

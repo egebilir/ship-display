@@ -1,0 +1,379 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    overflow: hidden;
+    background: #f0f2f5;
+}
+
+#map {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.header-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.header-content h1 {
+    color: #fff;
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.header-content h2 {
+    color: #fff;
+    font-size: 2em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.ship-info-overlay {
+    position: fixed;
+    top: 120px;
+    right: 20px;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    max-width: 400px;
+    transition: all 0.3s ease;
+}
+
+.ship-info-overlay:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.ship-info-content h2 {
+    margin-bottom: 10px;
+    color: #1a1a1a;
+    font-size: 1.6em;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    line-height: 1.2;
+}
+
+.coordinates {
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.coord {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    color: #2c3e50;
+    font-size: 0.95em;
+}
+
+.coord:last-child {
+    margin-bottom: 0;
+}
+
+.timestamp {
+    font-size: 1.1em;
+    color: #666;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-weight: 500;
+}
+
+#location-description {
+    color: #2c3e50;
+    font-size: 1.3em;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.ship-marker {
+    background: none;
+    border: none;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.direction-indicator {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.direction-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #2196F3;
+    border: 4px solid #1565C0;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.direction-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+}
+
+.ship-marker:hover .direction-indicator {
+    transform: scale(1.2) !important;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+.ship-marker:hover .direction-circle {
+    animation: none;
+}
+
+.nearest-land-info {
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nearest-land-info h3 {
+    color: #1a1a1a;
+    font-size: 1.1em;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.nearest-land-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.land-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.land-label {
+    color: #666;
+    font-size: 0.9em;
+}
+
+#nearest-land, #land-distance {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.search-box {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+#ship-search {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #2c3e50;
+    font-size: 0.95em;
+    transition: all 0.3s ease;
+}
+
+#ship-search:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(33, 150, 243, 0.5);
+}
+
+#search-button {
+    padding: 8px 16px;
+    background: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: all 0.3s ease;
+}
+
+#search-button:hover {
+    background: #1976D2;
+    transform: translateY(-1px);
+}
+
+#search-button:active {
+    transform: translateY(0);
+}
+
+.ship-details {
+    color: #2c3e50;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    background: rgba(33, 150, 243, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(33, 150, 243, 0.2);
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.ship-details span {
+    font-size: 1.2em;
+    margin-right: 8px;
+}
+
+.current-location {
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.current-location h3 {
+    color: #1a1a1a;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.location-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.location-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.4em;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.location-info:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#current-location {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.weather-info {
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.weather-info h3 {
+    color: #1a1a1a;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.weather-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.weather-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.4em;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.weather-item:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#date-info, #temperature, #wind-info {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+/* Emoji styles */
+.weather-item span, .location-info span {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.weather-item span:first-child, .location-info span:first-child {
+    font-size: 1.6em;
+    margin-right: 12px;
+} 
