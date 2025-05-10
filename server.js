@@ -26,7 +26,8 @@ app.get('/', (req, res) => {
 app.get('/api/ship/position', async (req, res) => {
     try {
         console.log('Fetching position from API proxy...');
-        const response = await axios.get('http://localhost:3001/api/ship/position');
+        const apiProxyUrl = process.env.API_PROXY_URL || 'http://localhost:3001';
+        const response = await axios.get(`${apiProxyUrl}/api/ship/position`);
         console.log('Received response from API proxy:', response.data);
         
         // Save position to database if we got valid data

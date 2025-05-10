@@ -6,10 +6,8 @@ let isFetching = false;
 
 // Server configuration
 const SERVER_CONFIG = {
-    host: window.location.hostname || 'localhost',
-    port: '8001',
     get apiUrl() {
-        return `http://${this.host}:${this.port}`;
+        return window.location.origin;
     }
 };
 
